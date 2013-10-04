@@ -1,9 +1,13 @@
+body {
+    background-color: black;
+}
+
 h1 {
     text-align: center;
     margin: auto;
     font-family: Garamond;
     font-size: 7em;
-    color: orange;
+    color: blue;
 }
 
 .cell {
@@ -39,5 +43,5 @@ h1 {
     color: black;
 }
 h1:hover {
-    color: white;
+    color: yellow;
 }
