@@ -1,5 +1,5 @@
 body {
-    background-color: black;
+    background-color: gray;
 }
 
 h1 {
@@ -7,7 +7,15 @@ h1 {
     margin: auto;
     font-family: Garamond;
     font-size: 7em;
-    color: blue;
+    color: black;
+}
+
+a {
+    display: block;
+    font-family: Arial;
+    font-size: 3em;
+    color: yellow;
+    text-align: center;
 }
 
 .cell {
@@ -16,8 +24,7 @@ h1 {
     height: 1em;
     text-align: center;
     line-height: 1em;
-    background-color: red;
-    color: greenyellow;
+    background-color: grey;
     font-size: 6em;
     text-transform: uppercase;
 }
@@ -26,22 +33,19 @@ h1 {
     clear: both;
 }
 
+.lt, .mt, .rt, .lc, .mc, .rc {border-bottom: .1em solid blue;}
+.mt, .mc, .mb, .rt, .rc, .rb {border-left: .1em solid blue}
+
+.x {
+    color: red;
+}
+.o {
+    color: yellow;
+}
+
 #gameboard {
     width: 19.2em;
     margin: 2em auto;
     overflow: hidden;
     border-radius: 2em;
-}
-
-.lt, .mt, .rt, .lc, .mc, .rc {border-bottom: .1em solid blue;}
-.mt, .mc, .mb, .rt, .rc, .rb {border-left: .1em solid blue}
-
-.x:hover {
-    color: purple;
-}
-.o:hover {
-    color: black;
-}
-h1:hover {
-    color: yellow;
 }
