@@ -81,6 +81,20 @@ function isDiagonalSameSymbols(currentPlayer) {
   return firstDiagonalCheck || secondDiagonalCheck;
 }
 
+function clearBoard() {
+  for ( var i=1 ; i <= 9 ; i++ ) {
+    var currentCell = document.getElementById("cell" + i);
+    currentCell.innerHTML = "";
+    currentCell.classList.remove("x");
+    currentCell.classList.remove("o");
+  };
+};
+
+function restartGame() {
+  currentSymbol = "x";
+  clearBoard();
+};
+
 function opponentSelectRandomSquare() {
   var randomNumber;
   if (currentSymbol == "o") {
