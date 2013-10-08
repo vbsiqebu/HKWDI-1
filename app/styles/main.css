@@ -33,14 +33,14 @@ a {
     clear: both;
 }
 
-.lt, .mt, .rt, .lc, .mc, .rc {border-bottom: .1em solid blue;}
-.mt, .mc, .mb, .rt, .rc, .rb {border-left: .1em solid blue}
+.lt, .mt, .rt, .lc, .mc, .rc {border-bottom: .1em solid black;}
+.mt, .mc, .mb, .rt, .rc, .rb {border-left: .1em solid black;}
 
 .x {
     color: red;
 }
 .o {
-    color: yellow;
+    color: blue;
 }
 
 #gameboard {

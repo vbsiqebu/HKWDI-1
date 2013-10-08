@@ -6,7 +6,7 @@ function handleClick(location) {
     if (isWinning(currentSymbol)) {
       alert( currentSymbol + " wins!");
     } else {
-     setTimeout(function() {simulateOpponentMove()}, 1000);
+     setTimeout(function() {simulateOpponentMove()}, 500);
     }
   } else {
     // do nothing
