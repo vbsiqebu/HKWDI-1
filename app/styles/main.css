@@ -57,6 +57,10 @@ footer {
 .lt, .mt, .rt, .lc, .mc, .rc {border-bottom: .1em solid black;}
 .mt, .mc, .mb, .rt, .rc, .rb {border-left: .1em solid black;}
 
+.backgroundCellColor {
+    background-color: purple;
+}
+
 .x {
     color: red;
 }
