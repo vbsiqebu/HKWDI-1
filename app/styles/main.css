@@ -10,6 +10,19 @@ h1 {
     color: black;
 }
 
+h5 {
+    text-align: center;
+    margin: auto;
+    font-family: Garamond;
+    color: black; 
+}
+
+input {
+    text-align: center;
+    margin: auto;
+    display: block;
+}
+
 button {
     display: block;
     margin-left: auto;
@@ -17,6 +30,13 @@ button {
     font-family: Arial;
     font-size: 2em;
     color: black;
+    border-radius: 2em;
+}
+
+footer {
+    width: 100%;
+    position: fixed; 
+    bottom: 0px; 
 }
 
 .cell {
@@ -25,7 +45,7 @@ button {
     height: 1em;
     text-align: center;
     line-height: 1em;
-    background-color: grey;
+    background-color: grey;;
     font-size: 6em;
     text-transform: uppercase;
 }
@@ -44,9 +64,28 @@ button {
     color: blue;
 }
 
+.howTo {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: white;
+}
+
+.goBack {
+    width: 100%;
+    position: absolute; 
+    bottom:4em; 
+}
+
 #gameboard {
     width: 19.2em;
     margin: 2em auto;
     overflow: hidden;
     border-radius: 2em;
+}
+
+#timerclock {
+    height: 30em;
+    width: 30em;
+    color: white;
 }

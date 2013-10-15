@@ -1,10 +1,10 @@
-'use strict';
+'use strict'
+angular.module('tickeyApp')
+	.controller('MainCtrl', function ($scope, $rootScope) {
 
-angular.module('TickeyApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+		$rootScope.home_button = true;
+		$rootScope.play_now = false;
+		$rootScope.is_how_to = false;
+
+
+	});

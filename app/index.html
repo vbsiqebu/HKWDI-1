@@ -15,7 +15,10 @@
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
 </head>
-<body>
+<body data-ng-app="tickeyApp">
+    <header>
+        <h1>Tic Tac Toe</h1>
+    </header>
     <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -26,13 +29,28 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <h1>Tic Tac Toe</h1>
+    <div data-ng-view=""></div>
 
-    <a href="gameboard.html"><button>Play Now</button></a>
+
+    
+
+    <footer ng-cloak>
+      <button data-ng-hide="home_button"><a href="#/">Home</a></button>
+      <button data-ng-hide="play_now"><a href="#/game_board">Play Now!</a></button>
+      <button data-ng-hide="is_how_to"><a href="#/how_to">How To</a></button>
+    </footer>
     
     
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/EddieApp.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-localstorage/angular-local-storage.js"></script>
+    <script src="scripts/app.js"></script>
+
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/game_board.js"></script>
+    <script src="scripts/controllers/how_to.js"></script>
+    <script src="scripts/directives/tickle_me.js"></script>
+
        
         <!-- endbuild -->
 </body>
