@@ -22,6 +22,13 @@
 
 <div>{{minutes}}:{{seconds}}</div>
 
-      <button data-ng-click="startTimer">Start</button>
-      <button data-ng-click="stopTimer">Stop</button>
-      <button data-ng-click="restartTimer">Restart</button>
+      <button class="timer" data-ng-click="startTimer()">Start</button>
+      <button class="timer" data-ng-click="stopTimer()">Stop</button>
+      <button class="timer" data-ng-click="restartTimer()">Restart</button>
+      <button data-ng-click="getName()">Enter Name</button>
+      <button data-ng-click="addWinToLeaderBoard()">Add Win!</button>
+
+      <h2>Leaderboard</h2>
+      <ol>
+        <li data-ng-repeat="(name, score) in leaderData.name">{{name}}: {{score}}</li>
+      </ol>
