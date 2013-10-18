@@ -1,0 +1,33 @@
+<div id="gameboard">
+  <div class="row">
+    <div id="cell1" class="cell lt {{gameBoard.board[0]}}" data-mouse="" data-ng-click="listenForMyClick(1)">{{gameBoard.board[0]}}</div>
+    <div id="cell2" class="cell mt {{gameBoard.board[1]}}" data-mouse="" data-ng-click="listenForMyClick(2)">{{gameBoard.board[1]}}</div>
+    <div id="cell3" class="cell rt {{gameBoard.board[2]}}" data-mouse="" data-ng-click="listenForMyClick(3)">{{gameBoard.board[2]}}</div>
+  </div>
+
+  <div class="row">
+    <div id="cell4" class="cell lc {{gameBoard.board[3]}}" data-mouse="" data-ng-click="listenForMyClick(4)">{{gameBoard.board[3]}}</div>
+    <div id="cell5" class="cell mc {{gameBoard.board[4]}}" data-mouse="" data-ng-click="listenForMyClick(5)">{{gameBoard.board[4]}}</div>
+    <div id="cell6" class="cell rc {{gameBoard.board[5]}}" data-mouse="" data-ng-click="listenForMyClick(6)">{{gameBoard.board[5]}}</div>
+  </div>
+
+  <div class="row">
+    <div id="cell7" class="cell lb {{gameBoard.board[6]}}" data-mouse="" data-ng-click="listenForMyClick(7)">{{gameBoard.board[6]}}</div>
+    <div id="cell8" class="cell mb {{gameBoard.board[7]}}" data-mouse="" data-ng-click="listenForMyClick(8)">{{gameBoard.board[7]}}</div>
+    <div id="cell9" class="cell rb {{gameBoard.board[8]}}" data-mouse="" data-ng-click="listenForMyClick(9)">{{gameBoard.board[8]}}</div>
+  </div>
+</div>
+
+<div>Number of Wins: {{numberOfWins}}</div>
+
+<div>{{minutes}}:{{seconds}}</div>
+
+      <button class="timer" data-ng-click="startTimer()">Start</button>
+      <button class="timer" data-ng-click="stopTimer()">Stop</button>
+      <button class="timer" data-ng-click="restartTimer()">Restart</button>
+      <button data-ng-click="getName()">Login to save score</button>
+
+      <h2>Leaderboard</h2>
+      <ol>
+        <li data-ng-repeat="(name, score) in leaderData.name">{{name}}: {{score}}</li>
+      </ol>
