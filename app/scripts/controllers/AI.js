@@ -1,6 +1,41 @@
 'use strict'
 angular.module('tickeyApp')
-	.controller('GameBoardCtrl', function ($scope, $rootScope, $timeout, localStorageService) {
+	.controller('AICtrl', function ($scope, $rootScope, $timeout, localStorageService, angularFire) {
+    var ref = new Firebase('https://tttdatabase.firebaseio.com/');
+    var p = angularFire(ref, $scope, "leaderData");
+
+    // $scope.leaderData = {name:
+    //   {
+    //     Josiah : 1
+    //   }
+    // };
+
+    // p.then(function(){
+    //   console.log("Data Loaded!")
+    // });
+
+    $scope.getName = function (){
+      $scope.userName = prompt("What's your name?");
+      console.log($scope.userName);
+    }
+
+    $scope.addWinToLeaderBoard = function() {
+      if ($scope.userName) {
+        if ($scope.leaderData.name.hasOwnProperty($scope.userName)) {
+          $scope.leaderData.name[$scope.userName]++;
+        } else {
+          $scope.leaderData.name[$scope.userName] = 1;
+        }
+      }
+    };
+
+
+    
+
+
+
+
+
 
       		localStorageService.add("names", ["Josiah", "Hatch"]);
 
@@ -21,56 +56,67 @@ angular.module('tickeyApp')
       		
       // Timer start
 
-      	$scope.minutes = "00";
-          $scope.seconds = "00";
-          $scope.currentNumberOfSeconds = 0;
-          $scope.intervalCallback;
+      	   // $scope.minutes = "00";
+          // $scope.seconds = "00";
+          // $scope.currentNumberOfSeconds = 0;
+          // $scope.intervalCallback;
 
-          $scope.increment = function() {
-            $scope.currentNumberOfSeconds++;
+          // $scope.increment = function() {
+          //   $scope.currentNumberOfSeconds++;
 
-            $scope.minutes = $scope.formatZeroPadding(Math.floor($scope.currentNumberOfSeconds / 60));
-            $scope.seconds = $scope.formatZeroPadding($scope.currentNumberOfSeconds % 60);
+          //   $scope.minutes = $scope.formatZeroPadding(Math.floor($scope.currentNumberOfSeconds / 60));
+          //   $scope.seconds = $scope.formatZeroPadding($scope.currentNumberOfSeconds % 60);
 
-            $scope.intervalCallback = $timeout($scope.increment, 1000);
-          }
+          //   $scope.intervalCallback = $timeout($scope.increment, 1000);
+          // }
 
-          $scope.startTimer = function() {
-            $scope.intervalCallback = $timeout($scope.increment, 1000);
-          }
+          // $scope.startTimer = function() {
+          //   $scope.intervalCallback = $timeout($scope.increment, 1000);
+          // }
 
-          $scope.stopTimer = function() {
-          	$timeout.cancel($scope.intervalCallback);
-          }
+          // $scope.stopTimer = function() {
+          // 	$timeout.cancel($scope.intervalCallback);
+          // }
 
-          $scope.restartTimer = function() {
-          	$scope.minutes = "00";
-          	$scope.seconds = "00";
-          	$scope.currentNumberOfSeconds = 0;
-          	$timeout.cancel($scope.intervalCallback);
-          }
+          // $scope.restartTimer = function() {
+          // 	$scope.minutes = "00";
+          // 	$scope.seconds = "00";
+          // 	$scope.currentNumberOfSeconds = 0;
+          // 	$timeout.cancel($scope.intervalCallback);
+          // }
 
-          $scope.formatZeroPadding = function(integer) {
-            if (integer < 10) {
-            	return "0" + integer;
-            } else {
-            	return integer;
-            }
-          }
+          // $scope.formatZeroPadding = function(integer) {
+          //   if (integer < 10) {
+          //   	return "0" + integer;
+          //   } else {
+          //   	return integer;
+          //   }
+          // }
 
       // Timer End
 
       $scope.currentSymbol = "x";
+      $scope.turnNum = 0;
+
+      $scope.turn = function() {
+        $scope.turnNum += 1;
+        console.log($scope.turnNum)
+      }
 
       $scope.handleClick = function(location) {
         if ($scope.notOccupied(location)) {
           $scope.makeNextMove(location, $scope.currentSymbol);
+          
+          $scope.turn();
+          console.log($scope.turnNum)
           if ($scope.isWinning($scope.currentSymbol)) {
             alert($scope.currentSymbol + " wins!");
-            $scope.clearBoard;
-            $scope.addNumberOfWins;
+            $scope.clearBoard();
+            $scope.addNumberOfWins();
           } else {
-            $scope.simulateOpponentMove();
+            if ($scope.turnNum < 9) {
+              $scope.simulateOpponentMove();
+            }
           }
         } else {
           // do nothing
@@ -78,16 +124,23 @@ angular.module('tickeyApp')
       };
 
       $scope.simulateOpponentMove = function() {
+        console.log("before swap to o")
         $scope.swapSymbol();
+        console.log("after swap to o")
         $scope.opponentSelectRandomSquare();
         if ($scope.isWinning($scope.currentSymbol)) {
             alert($scope.currentSymbol + " wins!");
           }
+          console.log("before swap back to x")
         $scope.swapSymbol();
+        console.log("after swap back to x")
+        $scope.turn(); 
+
       }
 
       $scope.makeNextMove = function(location, symbol) {
-        $scope.cells[location - 1] = symbol; 
+        $scope.cells[location - 1] = symbol;
+        $scope.turn; 
       }
 
       $scope.swapSymbol = function() {
@@ -158,6 +211,7 @@ angular.module('tickeyApp')
 
       $scope.restartGame = function() {
         $scope.currentSymbol = "x";
+        $scope.turnNum = 0;
         $scope.clearBoard();
       };
 
