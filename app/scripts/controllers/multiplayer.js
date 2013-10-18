@@ -37,7 +37,7 @@ angular.module('tickeyApp')
       console.log("wait received");
       if (!$scope.myTurn) {
         if (snapshot.val() != null) {
-          if (!arrays_equal(snapshot.val(), $scope.gameBoard.board)) {
+          if (!arrays_equal(snapshot.val().board, $scope.gameBoard.board)) {
             console.log("diff gameboard");
             if ($scope.isLosing()) {
               // print losing
@@ -58,33 +58,10 @@ angular.module('tickeyApp')
         console.log("it is my turn but I receive ");
       }
     });
-    
-    $scope.waitForOpponentToMove = function() {
-      gameBoardRef.once('child_changed', function(snapshot) {
-        if ($scope.isLosing()) {
-          alert($scope.mySymbol + "loses!");
-          // print player loses
-          $scope.playAgain = prompt("Do you want to play again?");
-            if (playAgain = true) {
-              $location.path("/match_player");
-            }
-          // redirect to match player if play again
-        } else if ($scope.isDraw()) {
-          alert("Tie game");
-          // print draw
-          $scope.playAgain = prompt("Do you want to play again?");
-            if (playAgain = true) {
-              $location.path("/match_player");
-            }
-          // redirect to match player if play again
-        } else {
-          // $scope.makeMyMove();
-        }
-      });
-    };
+  
     
     $scope.makeMyMove = function(location) {
-      console.log($scope.myTurn)
+      console.log($scope.myTurn);
       if ($scope.myTurn) {
         $scope.gameBoard.board[location - 1] = $scope.mySymbol;
           if ($scope.isWinning()) {
@@ -105,8 +82,9 @@ angular.module('tickeyApp')
                 }
             // redirect to match player if play again
           } else {
-            // $scope.myTurn = false;
-            $timeout($scope.waitForOpponentToMove, 4000);
+
+            console.log("not win, not draw");
+            $scope.myTurn = false;
           }   
         }
       }
@@ -117,9 +95,6 @@ angular.module('tickeyApp')
       // if ($scope.myTurn = true) {
         if ($scope.notOccupied(location)) {
           $scope.makeMyMove(location);
-          // var temp = $scope.myTurn;
-          // $scope.myTurn = !temp;
-
         }
       // }
     }
