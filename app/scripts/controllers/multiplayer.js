@@ -5,7 +5,7 @@ angular.module('tickeyApp')
     $scope.gameBoard = { board: ["","","","","","","","",""]};    
     var gameBoardRef = new Firebase("https://tttdatabase.firebaseio.com/" + $routeParams.id);
     $scope.gameBoardPromise = angularFire(gameBoardRef, $scope, "gameBoard", {});
-    var userRef = new Firebase("https://3dd13-ttt-game.firebaseio.com/users/");
+      var userRef = new Firebase("https://3dd13-ttt-game.firebaseio.com/users/");
     $scope.gameBoardId = $routeParams.id;
     $scope.mySymbol = $routeParams.mySymbol; 
     $scope.myTurn = false;  
